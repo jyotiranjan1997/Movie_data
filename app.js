@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const { MongoClient } = require('mongodb');
+
 const cors = require("cors");
 const PORT = process.env.PORT;
 const app = express();
@@ -11,8 +11,11 @@ const { ContactRoute } = require("./src/Routes/ContactRoute");
 
 app.use(express.json());
 app.use(cors());
+app.get("/api",async(req,res)=>{
+  res.status(200).send("Welcome to backend")
+})
 
-app.use("/api/user", UserRoute);
+// app.use("/api/user", UserRoute);
 app.use("/api/movie", MoviesRoute);
 app.use("/api/contact", ContactRoute);
 
