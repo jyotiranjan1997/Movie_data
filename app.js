@@ -15,7 +15,7 @@ app.get("/api",async(req,res)=>{
   res.status(200).send("Welcome to backend")
 })
 
-// app.use("/api/user", UserRoute);
+ app.use("/api/user", UserRoute);
 app.use("/api/movie", MoviesRoute);
 app.use("/api/contact", ContactRoute);
 
