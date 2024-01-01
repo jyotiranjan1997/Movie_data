@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { User } = require("../Models/UserModel");
 var jwt = require("jsonwebtoken");
 const { PRIVATE_KEY } = process.env;
@@ -29,4 +30,4 @@ const verifyadmin = async (req, res, next) => {
   }
 };
 
-module.exports = { verifyadmin };
+module.exports= {verifyadmin  };
