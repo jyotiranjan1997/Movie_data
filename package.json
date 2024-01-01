@@ -1,10 +1,10 @@
 {
   "name": "mybackend",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js",
+    // "start": "node app.js",
     "dev": "nodemon app.js"
   },
   "keywords": [],
