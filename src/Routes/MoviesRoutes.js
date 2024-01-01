@@ -7,12 +7,12 @@ const {
   UpdateMovie,
   DeleteMovie,
 } = require("../Controller/MovieController");
-const { verifyadmin } = require("../Middleware/verifyadmin");
+// const { verifyadmin } = require("../Middleware/verifyadmin");
 
 
 MoviesRoute.post("/", MovieCreate);
 MoviesRoute.post("/getmovies", MovieGet);
-MoviesRoute.put("/:id", verifyadmin, UpdateMovie);
-MoviesRoute.delete("/:id", verifyadmin, DeleteMovie);
+// MoviesRoute.put("/:id", verifyadmin, UpdateMovie);
+// MoviesRoute.delete("/:id", verifyadmin, DeleteMovie);
 
 module.exports = { MoviesRoute };
