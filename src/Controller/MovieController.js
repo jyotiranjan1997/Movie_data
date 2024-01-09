@@ -9,16 +9,17 @@ const MovieCreate = async (req, res) => {
       res.status(400).json({ Result: "Error - Movie already exist !" });
     } else {
       await Movie.create({...req.body,MovieHeading:Heading});
+      
       res.status(200).json({ Result: "Movie Create Successfully !" });
     }
   } catch (ex) {
-    console.log(ex.message)
+    
     res.status(400).json({ Result: "Error - " + ex.message });
   }
 };
 
 const MovieGet = async (req, res) => {
- const {MovieName,page_no,page_size}=req.body;
+ const {MovieName,page_no,page_size,MovieHeading}=req.body;
  const skip_Pages = (page_no - 1) * page_size;
  var Query={Active:true};
  if(MovieName){
@@ -26,14 +27,21 @@ const MovieGet = async (req, res) => {
     ...Query,
     MovieName: { $regex: ".*" + MovieName.trim(), $options: "i" },
   };
+ }else if(MovieHeading){
+  Query={...Query,MovieHeading}
  }
-
- console.log(Query)
   try {
-    const moviesData = await Movie.find(Query).sort({Year:-1}).limit(page_size)
+    if(MovieHeading){
+      const moviesData = await Movie.findOne(Query)
+      // const totalMovies = await Movie.find(Query).countDocuments();
+      res.status(200).json({ Result: moviesData });
+    }else{
+       const moviesData = await Movie.find(Query).sort({Year:-1}).limit(page_size)
     .skip(skip_Pages ? skip_Pages : 0);;
     const totalMovies = await Movie.find(Query).countDocuments();
     res.status(200).json({ Result: moviesData, totalMovies });
+    }
+   
   } catch (ex) {
     res.status(400).json({ Result: "Error - " + ex.message });
   }
