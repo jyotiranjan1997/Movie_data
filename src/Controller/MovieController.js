@@ -42,7 +42,7 @@ const MovieGet = async (req, res) => {
       // const totalMovies = await Movie.find(Query).countDocuments();
       res.status(200).json({ Result: moviesData });
     }else{
-       const moviesData = await Movie.find(Query).sort({Year:-1}).limit(page_size)
+       const moviesData = await Movie.find(Query).sort({Year:1}).limit(page_size)
     .skip(skip_Pages ? skip_Pages : 0);
     const totalMovies = await Movie.find(Query).countDocuments();
     res.status(200).json({ Result: moviesData, totalMovies });
